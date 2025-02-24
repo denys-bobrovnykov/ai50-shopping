@@ -89,7 +89,7 @@ def load_data(filename):
                 float(row['ExitRates']),
                 float(row['PageValues']),
                 float(row['SpecialDay']),
-                months[row['Month'].lower()],
+                months[row['Month'][:3].lower()],
                 int(row['OperatingSystems']),
                 int(row['Browser']),
                 int(row['Region']),
