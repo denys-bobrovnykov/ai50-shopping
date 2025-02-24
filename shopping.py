@@ -59,7 +59,45 @@ def load_data(filename):
     labels should be the corresponding list of labels, where each label
     is 1 if Revenue is true, and 0 otherwise.
     """
-    raise NotImplementedError
+    months = {'jan':0,
+              'feb':1,
+              'mar':2,
+              'apr':3,
+              'may':4,
+              'jun':5,
+              'jul':6,
+              'aug':7,
+              'sep':8,
+              'oct':9,
+              'nov':10,
+              'dec':11
+              }
+    evidence = []
+    labels = []
+    with open(filename, mode='r') as file:
+        reader = csv.DictReader(file, delimiter=',')
+        for row in reader:
+            labels.append(1 if row['Revenue'].lower() == 'true' else 0)
+            evidence.append([
+                int(row['Administrative']),
+                float(row['Administrative_Duration']),
+                int(row['Informational']),
+                float(row['Informational_Duration']),
+                int(row['ProductRelated']),
+                float(row['ProductRelated_Duration']),
+                float(row['BounceRates']),
+                float(row['ExitRates']),
+                float(row['PageValues']),
+                float(row['SpecialDay']),
+                months[row['Month'].lower()],
+                int(row['OperatingSystems']),
+                int(row['Browser']),
+                int(row['Region']),
+                int(row['TrafficType']),
+                1 if row['VisitorType'].lower() == 'returning_visitor' else 0,
+                1 if row['Weekend'].lower() == 'true' else 0,
+            ])
+    return evidence, labels
 
 
 def train_model(evidence, labels):
@@ -86,7 +124,6 @@ def evaluate(labels, predictions):
     actual negative labels that were accurately identified.
     """
     raise NotImplementedError
-
 
 if __name__ == "__main__":
     main()
