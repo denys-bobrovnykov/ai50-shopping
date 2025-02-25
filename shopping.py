@@ -132,10 +132,8 @@ def evaluate(labels, predictions):
         total += 1
         if actual == 1 and predicted == 1:
             true += 1
-            correct += 1
         elif actual == 0 and predicted == 0:
             false += 1
-            correct += 1
     return true / (true + false), false / (true + false)
 
 if __name__ == "__main__":
