@@ -136,7 +136,7 @@ def evaluate(labels, predictions):
         elif actual == 0 and predicted == 0:
             false += 1
             correct += 1
-    return true / correct, false / correct
+    return true / (true + false), false / (true + false)
 
 if __name__ == "__main__":
     main()
