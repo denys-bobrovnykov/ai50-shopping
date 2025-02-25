@@ -126,14 +126,17 @@ def evaluate(labels, predictions):
     """
     true = 0
     false = 0
+    correct = 0
     total = 0
     for actual, predicted in zip(labels, predictions):
         total += 1
         if actual == 1 and predicted == 1:
             true += 1
+            correct += 1
         elif actual == 0 and predicted == 0:
             false += 1
-    return true / total, false / total
+            correct += 1
+    return true / correct, false / correct
 
 if __name__ == "__main__":
     main()
