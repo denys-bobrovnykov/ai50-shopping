@@ -126,11 +126,9 @@ def evaluate(labels, predictions):
     """
     true = 0
     false = 0
-    total = 0
     positives = 0
     negatives = 0
     for actual, predicted in zip(labels, predictions):
-        total += 1
         if actual == 1:
             positives += 1
             if predicted == 1:
